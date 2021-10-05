@@ -4,10 +4,12 @@ import path from 'path';
 const filePath = path.resolve(`text.txt`);
 
 const readText = () => {
+  console.log(`fs object properties(readText): `, Object.keys(fs).join(`, `));
   console.log(fs.readFileSync(filePath, `utf8`));
 }
 
 const writeText = () => {
+  console.log(`fs object properties(writeText): `, Object.keys(fs).join(`, `));
   console.log(filePath);
   fs.writeFileSync(filePath, new Date().toISOString());
 }
