@@ -1,14 +1,17 @@
-import { jest } from '@jest/globals';
+import { jest } from "@jest/globals";
+
+beforeEach(() => {
+  jest.resetModules();
+});
 
 describe(`jest es6 native mocs`, () => {
-
   it(`first test writing a file to disk`, async () => {
     jest.unstable_mockModule(`fs`, () => {
       return {
         default: {
-          writeFileSync: jest.fn().mockImplementation(() => {})
-        }
-      }
+          writeFileSync: jest.fn().mockImplementation(() => {}),
+        },
+      };
     });
 
     const { default: rw } = await import(`../src/index.mjs`);
@@ -21,9 +24,9 @@ describe(`jest es6 native mocs`, () => {
     jest.unstable_mockModule(`fs`, () => {
       return {
         default: {
-          readFileSync: jest.fn().mockImplementation(() => {})
-        }
-      }
+          readFileSync: jest.fn().mockImplementation(() => {}),
+        },
+      };
     });
 
     const { default: rw } = await import(`../src/index.mjs`);
@@ -31,5 +34,4 @@ describe(`jest es6 native mocs`, () => {
 
     readText();
   });
-
 });
