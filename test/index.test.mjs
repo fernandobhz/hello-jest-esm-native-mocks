@@ -28,10 +28,14 @@ describe(`jest es6 native mocs`, () => {
         },
       };
     });
-
+    
     const { default: rw } = await import(`../src/index.mjs`);
     const { readText } = rw;
-
+    
     readText();
+    
+    
+    const fs = await import('fs'); 
+    expect(fs.default.readFileSync).toHaveBeenCalledTimes(1);
   });
 });
